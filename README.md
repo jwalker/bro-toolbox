@@ -4,8 +4,11 @@ These are a set of custom tools that I have created which should help
 with Bro setups for different situations
 
 #### logs2grok.py
-This script helps identify the headers from each bro log file (defined in code)
+This script helps identifies the headers from each bro log file
+
 https://www.bro.org/sphinx/script-reference/log-files.html
+
+then generates usable grok filters for logstash
 
 Using the columns types found from the headers should help define normalization
 usually defined by ETL standards
