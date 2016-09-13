@@ -5,7 +5,9 @@ with Bro setups for different situations
 
 #### logs2grok.py
 This script helps identifies the headers from each bro log file
+
 https://www.bro.org/sphinx/script-reference/log-files.html
+
 then generates usable grok filters for logstash
 
 Using the columns types found from the headers should help define normalization
