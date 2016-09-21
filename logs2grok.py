@@ -13,7 +13,8 @@ import csv
 
 # PATH of Bro logs and file extension type
 # Change below to reflect your path
-log_path = "/usr/local/bro/logs/current/"
+#log_path = "/usr/local/bro/logs/current/"
+log_path = "/Users/jwalker/git/bro-toolbox/"
 file_type = '.log'
 
 bro_files = [
@@ -130,18 +131,10 @@ def logstash_template(bro_file, message, bro_log):
             buff = buff.replace(check, end_msg)
             print "###### %s" %(bro_file)
             print """
-            file {
-                type => "%s"
-                path => "%s"
-            }
-            """ % (bro_file, bro_log)
-            print """
-              if [type] == "%s" {
                   grok {
                   match => [ "message", "%s" ]
                 }
-            }
-            """ %(bro_file, buff)
+            """ %(buff)
             print "#" * 20
     except KeyError:
         pass
