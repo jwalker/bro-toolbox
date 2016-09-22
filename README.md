@@ -17,85 +17,57 @@ https://en.wikipedia.org/wiki/Extract,_transform,_load
 #### example usage (sample snippet)
 ```
 $ python logs2grok.py
-Bro_File: /usr/local/bro/logs/current/conn.log
+####################
+Bro_File: /Users/jwalker/git/bro-toolbox/x509.log
     ts
-    uid
-    id.orig_h
-    id.orig_p
-    id.resp_h
-    id.resp_p
-    proto
-    service
-    duration
-    orig_bytes
-    resp_bytes
-    conn_state
-    local_orig
-    local_resp
-    missed_bytes
-    history
-    orig_pkts
-    orig_ip_bytes
-    resp_pkts
-    resp_ip_bytes
-    tunnel_parents
+    id
+    certificate.version
+    certificate.serial
+    certificate.subject
+    certificate.issuer
+    certificate.not_valid_before
+    certificate.not_valid_after
+    certificate.key_alg
+    certificate.sig_alg
+    certificate.key_type
+    certificate.key_length
+    certificate.exponent
+    certificate.curve
+    san.dns
+    san.uri
+    san.email
+    san.ip
+    basic_constraints.ca
+    basic_constraints.path_len
 --------------------
-###### conn
+###### x509
 
-            file {
-                type => "conn"
-                path => "/usr/local/bro/logs/current/conn.log"
-            }
-
-
-              if [type] == "conn" {
                   grok {
                   match => [ "message",
-"(?<ts>(.*?))\t(?<uid>(.*?))\t(?<id_orig_h>(.*?))\t(?<id_orig_p>(.*?))\t(?<id_resp_h>(.*?))\t(?<id_resp_p>(.*?))\t(?<proto>(.*?))\t(?<service>(.*?))\t(?<duration>(.*?))\t(?<orig_bytes>(.*?))\t(?<resp_bytes>(.*?))\t(?<conn_state>(.*?))\t(?<local_orig>(.*?))\t(?<local_resp>(.*?))\t(?<missed_bytes>(.*?))\t(?<history>(.*?))\t(?<orig_pkts>(.*?))\t(?<orig_ip_bytes>(.*?))\t(?<resp_pkts>(.*?))\t(?<resp_ip_bytes>(.*?))\t(?<tunnel_parents>(.*))"
+"(?<ts>(.*?))\t(?<id>(.*?))\t(?<certificate_version>(.*?))\t(?<certificate_serial>(.*?))\t(?<certificate_subject>(.*?))\t(?<certificate_issuer>(.*?))\t(?<certificate_not_valid_before>(.*?))\t(?<certificate_not_valid_after>(.*?))\t(?<certificate_key_alg>(.*?))\t(?<certificate_sig_alg>(.*?))\t(?<certificate_key_type>(.*?))\t(?<certificate_key_length>(.*?))\t(?<certificate_exponent>(.*?))\t(?<certificate_curve>(.*?))\t(?<san_dns>(.*?))\t(?<san_uri>(.*?))\t(?<san_email>(.*?))\t(?<san_ip>(.*?))\t(?<basic_constraints_ca>(.*?))\t(?<basic_constraints_path_len>(.*))"
 ]
                 }
-            }
 
 ####################
-Bro_File: /usr/local/bro/logs/current/dns.log
+Bro_File: /Users/jwalker/git/bro-toolbox/weird.log
     ts
     uid
     id.orig_h
     id.orig_p
     id.resp_h
     id.resp_p
-    proto
-    trans_id
-    rtt
-    query
-    qclass
-    qclass_name
-    qtype
-    qtype_name
-    rcode
-    rcode_name
-    AA
-    TC
-    RD
-    RA
-    Z
-    answers
-    TTLs
-    rejected
+    name
+    addl
+    notice
+    peer
 --------------------
-###### dns
+###### weird
 
-            file {
-                type => "dns"
-                path => "/usr/local/bro/logs/current/dns.log"
-            }
-
-
-              if [type] == "dns" {
                   grok {
                   match => [ "message",
-"(?<ts>(.*?))\t(?<uid>(.*?))\t(?<id_orig_h>(.*?))\t(?<id_orig_p>(.*?))\t(?<id_resp_h>(.*?))\t(?<id_resp_p>(.*?))\t(?<proto>(.*?))\t(?<trans_id>(.*?))\t(?<rtt>(.*?))\t(?<query>(.*?))\t(?<qclass>(.*?))\t(?<qclass_name>(.*?))\t(?<qtype>(.*?))\t(?<qtype_name>(.*?))\t(?<rcode>(.*?))\t(?<rcode_name>(.*?))\t(?<AA>(.*?))\t(?<TC>(.*?))\t(?<RD>(.*?))\t(?<RA>(.*?))\t(?<Z>(.*?))\t(?<answers>(.*?))\t(?<TTLs>(.*?))\t(?<rejected>(.*))"
+"(?<ts>(.*?))\t(?<uid>(.*?))\t(?<id_orig_h>(.*?))\t(?<id_orig_p>(.*?))\t(?<id_resp_h>(.*?))\t(?<id_resp_p>(.*?))\t(?<name>(.*?))\t(?<addl>(.*?))\t(?<notice>(.*?))\t(?<peer>(.*))"
 ]
                 }
-            }
+
+####################
 ```
